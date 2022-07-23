@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es6",
+    "declaration": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "esModuleInterop": true,        /* Enables intero between CommonJS and ES */
+    "skipLibCheck": true,
+//    "declarationMap": true,
+    "rootDir": "./",
+    "allowJs": true
+  },
+  "include": [
+    "./src/*.ts", "./src/generated/*.js",
+    "./src/generated/*.d.ts"
+  ],
+  "exclude": ["node_modules"]
+}

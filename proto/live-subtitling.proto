@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "language.proto";
+import "request-headers.proto";
+
+package sftpprocessor;
+// The greeting service definition.
+service LiveSubtitling {
+  // Starts a transcription
+  rpc Transcribe (LiveTranscriptionRequest) returns (stream LiveTranscriptionReply) {}
+}
+
+// The request message containing the user's name.
+message LiveTranscriptionRequest {
+  optional string externalReference = 1;
+  string sourceUrl = 2;
+  repeated Language outputLanguages = 4;
+  optional RequestHeaders headers = 5;
+  optional Language sourceLanguage = 6;
+}
+
+// The response message containing the greetings
+message LiveTranscriptionReply {
+  optional string externalReference = 1;
+  string result = 2;
+  Language language = 4;
+  bool original = 5;
+  bool isFinal = 6;
+}

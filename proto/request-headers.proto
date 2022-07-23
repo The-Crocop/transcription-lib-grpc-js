@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+
+message RequestHeaders {
+  map<string, string> headers = 5;
+}
