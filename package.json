@@ -1,0 +1,28 @@
+{
+  "name": "transcription-lib-grpc-js",
+  "version": "0.0.1",
+  "description": "Creates Live Transcription of a media input stream in multiple languages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/The-Crocop/transcription-lib-grpc-js.git"
+  },
+  "keywords": [
+    "asr",
+    "transcription",
+    "live",
+    "grpc",
+    "js",
+    "node",
+    "ts"
+  ],
+  "author": "Marko Nalis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/The-Crocop/transcription-lib-grpc-js/issues"
+  },
+  "homepage": "https://github.com/The-Crocop/transcription-lib-grpc-js#readme"
+}
