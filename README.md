@@ -14,7 +14,7 @@ Then you need to ask for an API key.
 
 To use the library in your node or ts project you can to the following
 
-```
+```typescript
 import * as grpc from '@grpc/grpc-js'
 import {LiveSubtitlingClient} from "transcription-lib-grpc-js/src/generated/live-subtitling_grpc_pb";
 import {Language} from "transcription-lib-grpc-js/src/generated/language_pb";
