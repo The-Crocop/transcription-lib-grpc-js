@@ -27,4 +27,6 @@ const stream = client.transcribe(request, headers);
 stream.on('data', (response: LiveTranscriptionReply) => {
    console.log('received Response');
    console.log(response.getResult());
+   console.log(`start (s,ms): ${response.getWordsList()[0].getStarttime().getSeconds()}, ${response.getWordsList()[0].getStarttime().getNanos()}`)
+   console.log(`end (s, ms): ${response.getWordsList()[response.getWordsList().length -1].getStarttime().getSeconds()}, ${response.getWordsList()[response.getWordsList().length -1].getStarttime().getNanos()}`)
 });

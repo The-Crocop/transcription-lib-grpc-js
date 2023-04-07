@@ -26,4 +26,16 @@ message LiveTranscriptionReply {
   Language language = 4;
   bool original = 5;
   bool isFinal = 6;
+  repeated Word words = 7;
+}
+
+message Word {
+  Duration startTime = 1;
+  Duration endTime = 2;
+  string word = 3;
+}
+
+message Duration {
+  int64 seconds = 1;
+  int32 nanos = 2;
 }

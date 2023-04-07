@@ -65,6 +65,10 @@ export class LiveTranscriptionReply extends jspb.Message {
     setOriginal(value: boolean): LiveTranscriptionReply;
     getIsfinal(): boolean;
     setIsfinal(value: boolean): LiveTranscriptionReply;
+    clearWordsList(): void;
+    getWordsList(): Array<Word>;
+    setWordsList(value: Array<Word>): LiveTranscriptionReply;
+    addWords(value?: Word, index?: number): Word;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LiveTranscriptionReply.AsObject;
@@ -83,5 +87,61 @@ export namespace LiveTranscriptionReply {
         language: language_pb.Language,
         original: boolean,
         isfinal: boolean,
+        wordsList: Array<Word.AsObject>,
+    }
+}
+
+export class Word extends jspb.Message { 
+
+    hasStarttime(): boolean;
+    clearStarttime(): void;
+    getStarttime(): Duration | undefined;
+    setStarttime(value?: Duration): Word;
+
+    hasEndtime(): boolean;
+    clearEndtime(): void;
+    getEndtime(): Duration | undefined;
+    setEndtime(value?: Duration): Word;
+    getWord(): string;
+    setWord(value: string): Word;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Word.AsObject;
+    static toObject(includeInstance: boolean, msg: Word): Word.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Word, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Word;
+    static deserializeBinaryFromReader(message: Word, reader: jspb.BinaryReader): Word;
+}
+
+export namespace Word {
+    export type AsObject = {
+        starttime?: Duration.AsObject,
+        endtime?: Duration.AsObject,
+        word: string,
+    }
+}
+
+export class Duration extends jspb.Message { 
+    getSeconds(): number;
+    setSeconds(value: number): Duration;
+    getNanos(): number;
+    setNanos(value: number): Duration;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Duration.AsObject;
+    static toObject(includeInstance: boolean, msg: Duration): Duration.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Duration, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Duration;
+    static deserializeBinaryFromReader(message: Duration, reader: jspb.BinaryReader): Duration;
+}
+
+export namespace Duration {
+    export type AsObject = {
+        seconds: number,
+        nanos: number,
     }
 }
