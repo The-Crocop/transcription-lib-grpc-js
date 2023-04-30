@@ -12,7 +12,13 @@ const API_KEY = process.env.API_KEY;
 //     callback(null, meta)
 // }
 
-const client = new LiveSubtitlingClient(host, grpc.credentials.createInsecure());
+const client = new LiveSubtitlingClient(host, grpc.credentials.createInsecure(),
+{ // to configure timeouts, if you expect that there might be longer phases without text
+   "grpc.http2.max_pings_without_data" : 0,
+    "grpc.keepalive_time_ms": 10000,
+    "grpc.keepalive_permit_without_calls" : 1
+
+});
 
 const sampleVideoUrl = 'rtmp://127.0.0.1:1935/live/swissinfo'
 const request = new LiveTranscriptionRequest();
