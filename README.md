@@ -44,6 +44,9 @@ request.setExternalreference('myexampletest'); // just to be able to reference a
 request.setSourceurl(sampleVideoUrl);
 request.setSourcelanguage(Language.DE);
 
+// if you want to have multiple languages detected at the same time you can set additional language support
+request.addAdditionalsourcelanguages(Language.FR)
+
 const headers = new grpc.Metadata();
 headers.add("Authorization", `Bearer ${API_KEY}`);
 

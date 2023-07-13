@@ -17,6 +17,7 @@ message LiveTranscriptionRequest {
   repeated Language outputLanguages = 4;
   optional RequestHeaders headers = 5;
   optional Language sourceLanguage = 6;
+  repeated Language additionalSourceLanguages = 7;
 }
 
 // The response message containing the greetings

@@ -30,6 +30,10 @@ export class LiveTranscriptionRequest extends jspb.Message {
     clearSourcelanguage(): void;
     getSourcelanguage(): language_pb.Language | undefined;
     setSourcelanguage(value: language_pb.Language): LiveTranscriptionRequest;
+    clearAdditionalsourcelanguagesList(): void;
+    getAdditionalsourcelanguagesList(): Array<language_pb.Language>;
+    setAdditionalsourcelanguagesList(value: Array<language_pb.Language>): LiveTranscriptionRequest;
+    addAdditionalsourcelanguages(value: language_pb.Language, index?: number): language_pb.Language;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LiveTranscriptionRequest.AsObject;
@@ -48,6 +52,7 @@ export namespace LiveTranscriptionRequest {
         outputlanguagesList: Array<language_pb.Language>,
         headers?: request_headers_pb.RequestHeaders.AsObject,
         sourcelanguage?: language_pb.Language,
+        additionalsourcelanguagesList: Array<language_pb.Language>,
     }
 }
 

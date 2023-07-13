@@ -20,11 +20,14 @@ const client = new LiveSubtitlingClient(host, grpc.credentials.createInsecure(),
 
 });
 
-const sampleVideoUrl = 'rtmp://127.0.0.1:1935/live/swissinfo'
+// const sampleVideoUrl = 'rtmp://127.0.0.1:1935/live/swissinfo'
+// const sampleVideoUrl = "https://15595674c0604ed6.mediapackage.eu-central-1.amazonaws.com/out/v1/114a06d3e9d3458ea8ebf432d2294010/index.m3u8"
+const sampleVideoUrl = "rtmp://localhost:1935/live/berset"
 const request = new LiveTranscriptionRequest();
 request.setExternalreference('myexampletest');
 request.setSourceurl(sampleVideoUrl);
 request.setSourcelanguage(Language.DE);
+request.addAdditionalsourcelanguages(Language.FR)
 
 const headers = new grpc.Metadata();
 headers.add("Authorization", `Bearer ${API_KEY}`);

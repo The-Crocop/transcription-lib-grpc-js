@@ -13,7 +13,13 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = Function('return this')();
+var global = (function() {
+  if (this) { return this; }
+  if (typeof window !== 'undefined') { return window; }
+  if (typeof global !== 'undefined') { return global; }
+  if (typeof self !== 'undefined') { return self; }
+  return Function('return this')();
+}.call(null));
 
 var language_pb = require('./language_pb.js');
 goog.object.extend(proto, language_pb);
@@ -113,7 +119,7 @@ if (goog.DEBUG && !COMPILED) {
  * @private {!Array<number>}
  * @const
  */
-proto.sftpprocessor.LiveTranscriptionRequest.repeatedFields_ = [4];
+proto.sftpprocessor.LiveTranscriptionRequest.repeatedFields_ = [4,7];
 
 
 
@@ -150,7 +156,8 @@ proto.sftpprocessor.LiveTranscriptionRequest.toObject = function(includeInstance
     sourceurl: jspb.Message.getFieldWithDefault(msg, 2, ""),
     outputlanguagesList: (f = jspb.Message.getRepeatedField(msg, 4)) == null ? undefined : f,
     headers: (f = msg.getHeaders()) && request$headers_pb.RequestHeaders.toObject(includeInstance, f),
-    sourcelanguage: jspb.Message.getFieldWithDefault(msg, 6, 0)
+    sourcelanguage: jspb.Message.getFieldWithDefault(msg, 6, 0),
+    additionalsourcelanguagesList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
   };
 
   if (includeInstance) {
@@ -209,6 +216,12 @@ proto.sftpprocessor.LiveTranscriptionRequest.deserializeBinaryFromReader = funct
     case 6:
       var value = /** @type {!proto.Language} */ (reader.readEnum());
       msg.setSourcelanguage(value);
+      break;
+    case 7:
+      var values = /** @type {!Array<!proto.Language>} */ (reader.isDelimited() ? reader.readPackedEnum() : [reader.readEnum()]);
+      for (var i = 0; i < values.length; i++) {
+        msg.addAdditionalsourcelanguages(values[i]);
+      }
       break;
     default:
       reader.skipField();
@@ -272,6 +285,13 @@ proto.sftpprocessor.LiveTranscriptionRequest.serializeBinaryToWriter = function(
   if (f != null) {
     writer.writeEnum(
       6,
+      f
+    );
+  }
+  f = message.getAdditionalsourcelanguagesList();
+  if (f.length > 0) {
+    writer.writePackedEnum(
+      7,
       f
     );
   }
@@ -439,6 +459,43 @@ proto.sftpprocessor.LiveTranscriptionRequest.prototype.clearSourcelanguage = fun
  */
 proto.sftpprocessor.LiveTranscriptionRequest.prototype.hasSourcelanguage = function() {
   return jspb.Message.getField(this, 6) != null;
+};
+
+
+/**
+ * repeated Language additionalSourceLanguages = 7;
+ * @return {!Array<!proto.Language>}
+ */
+proto.sftpprocessor.LiveTranscriptionRequest.prototype.getAdditionalsourcelanguagesList = function() {
+  return /** @type {!Array<!proto.Language>} */ (jspb.Message.getRepeatedField(this, 7));
+};
+
+
+/**
+ * @param {!Array<!proto.Language>} value
+ * @return {!proto.sftpprocessor.LiveTranscriptionRequest} returns this
+ */
+proto.sftpprocessor.LiveTranscriptionRequest.prototype.setAdditionalsourcelanguagesList = function(value) {
+  return jspb.Message.setField(this, 7, value || []);
+};
+
+
+/**
+ * @param {!proto.Language} value
+ * @param {number=} opt_index
+ * @return {!proto.sftpprocessor.LiveTranscriptionRequest} returns this
+ */
+proto.sftpprocessor.LiveTranscriptionRequest.prototype.addAdditionalsourcelanguages = function(value, opt_index) {
+  return jspb.Message.addToRepeatedField(this, 7, value, opt_index);
+};
+
+
+/**
+ * Clears the list making it empty but non-null.
+ * @return {!proto.sftpprocessor.LiveTranscriptionRequest} returns this
+ */
+proto.sftpprocessor.LiveTranscriptionRequest.prototype.clearAdditionalsourcelanguagesList = function() {
+  return this.setAdditionalsourcelanguagesList([]);
 };
 
 
