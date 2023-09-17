@@ -13,13 +13,7 @@
 
 var jspb = require('google-protobuf');
 var goog = jspb;
-var global = (function() {
-  if (this) { return this; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  if (typeof self !== 'undefined') { return self; }
-  return Function('return this')();
-}.call(null));
+var global = Function('return this')();
 
 var language_pb = require('./language_pb.js');
 goog.object.extend(proto, language_pb);
@@ -544,7 +538,10 @@ proto.sftpprocessor.LiveTranscriptionReply.toObject = function(includeInstance, 
     original: jspb.Message.getBooleanFieldWithDefault(msg, 5, false),
     isfinal: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
     wordsList: jspb.Message.toObjectList(msg.getWordsList(),
-    proto.sftpprocessor.Word.toObject, includeInstance)
+    proto.sftpprocessor.Word.toObject, includeInstance),
+    languagecode: jspb.Message.getFieldWithDefault(msg, 8, ""),
+    confidence: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
+    stability: jspb.Message.getFloatingPointFieldWithDefault(msg, 10, 0.0)
   };
 
   if (includeInstance) {
@@ -605,6 +602,18 @@ proto.sftpprocessor.LiveTranscriptionReply.deserializeBinaryFromReader = functio
       var value = new proto.sftpprocessor.Word;
       reader.readMessage(value,proto.sftpprocessor.Word.deserializeBinaryFromReader);
       msg.addWords(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setLanguagecode(value);
+      break;
+    case 9:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setConfidence(value);
+      break;
+    case 10:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setStability(value);
       break;
     default:
       reader.skipField();
@@ -676,6 +685,27 @@ proto.sftpprocessor.LiveTranscriptionReply.serializeBinaryToWriter = function(me
       7,
       f,
       proto.sftpprocessor.Word.serializeBinaryToWriter
+    );
+  }
+  f = message.getLanguagecode();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 9));
+  if (f != null) {
+    writer.writeDouble(
+      9,
+      f
+    );
+  }
+  f = /** @type {number} */ (jspb.Message.getField(message, 10));
+  if (f != null) {
+    writer.writeDouble(
+      10,
+      f
     );
   }
 };
@@ -824,6 +854,96 @@ proto.sftpprocessor.LiveTranscriptionReply.prototype.addWords = function(opt_val
  */
 proto.sftpprocessor.LiveTranscriptionReply.prototype.clearWordsList = function() {
   return this.setWordsList([]);
+};
+
+
+/**
+ * optional string languageCode = 8;
+ * @return {string}
+ */
+proto.sftpprocessor.LiveTranscriptionReply.prototype.getLanguagecode = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.sftpprocessor.LiveTranscriptionReply} returns this
+ */
+proto.sftpprocessor.LiveTranscriptionReply.prototype.setLanguagecode = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
+};
+
+
+/**
+ * optional double confidence = 9;
+ * @return {number}
+ */
+proto.sftpprocessor.LiveTranscriptionReply.prototype.getConfidence = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 9, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.sftpprocessor.LiveTranscriptionReply} returns this
+ */
+proto.sftpprocessor.LiveTranscriptionReply.prototype.setConfidence = function(value) {
+  return jspb.Message.setField(this, 9, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.sftpprocessor.LiveTranscriptionReply} returns this
+ */
+proto.sftpprocessor.LiveTranscriptionReply.prototype.clearConfidence = function() {
+  return jspb.Message.setField(this, 9, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.sftpprocessor.LiveTranscriptionReply.prototype.hasConfidence = function() {
+  return jspb.Message.getField(this, 9) != null;
+};
+
+
+/**
+ * optional double stability = 10;
+ * @return {number}
+ */
+proto.sftpprocessor.LiveTranscriptionReply.prototype.getStability = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 10, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.sftpprocessor.LiveTranscriptionReply} returns this
+ */
+proto.sftpprocessor.LiveTranscriptionReply.prototype.setStability = function(value) {
+  return jspb.Message.setField(this, 10, value);
+};
+
+
+/**
+ * Clears the field making it undefined.
+ * @return {!proto.sftpprocessor.LiveTranscriptionReply} returns this
+ */
+proto.sftpprocessor.LiveTranscriptionReply.prototype.clearStability = function() {
+  return jspb.Message.setField(this, 10, undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.sftpprocessor.LiveTranscriptionReply.prototype.hasStability = function() {
+  return jspb.Message.getField(this, 10) != null;
 };
 
 

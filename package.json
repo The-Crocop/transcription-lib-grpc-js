@@ -1,6 +1,6 @@
 {
   "name": "transcription-lib-grpc-js",
-  "version": "0.9.0",
+  "version": "1.0.2",
   "description": "Creates Live Transcription of a media input stream in multiple languages",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

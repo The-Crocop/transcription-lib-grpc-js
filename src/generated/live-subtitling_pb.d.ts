@@ -74,6 +74,18 @@ export class LiveTranscriptionReply extends jspb.Message {
     getWordsList(): Array<Word>;
     setWordsList(value: Array<Word>): LiveTranscriptionReply;
     addWords(value?: Word, index?: number): Word;
+    getLanguagecode(): string;
+    setLanguagecode(value: string): LiveTranscriptionReply;
+
+    hasConfidence(): boolean;
+    clearConfidence(): void;
+    getConfidence(): number | undefined;
+    setConfidence(value: number): LiveTranscriptionReply;
+
+    hasStability(): boolean;
+    clearStability(): void;
+    getStability(): number | undefined;
+    setStability(value: number): LiveTranscriptionReply;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): LiveTranscriptionReply.AsObject;
@@ -93,6 +105,9 @@ export namespace LiveTranscriptionReply {
         original: boolean,
         isfinal: boolean,
         wordsList: Array<Word.AsObject>,
+        languagecode: string,
+        confidence?: number,
+        stability?: number,
     }
 }
 

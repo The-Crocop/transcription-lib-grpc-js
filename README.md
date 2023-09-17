@@ -52,12 +52,18 @@ headers.add("Authorization", `Bearer ${API_KEY}`);
 
 const stream = client.transcribe(request, headers);
 stream.on('data', (response: LiveTranscriptionReply) => {
-    console.clear()
-    // final means its the final result for the section we print it in green color
-    console.log(`${response.getIsfinal() ? GREEN : ''} > ${response.getResult()} ${RESET}`);
-    // a list of word is returned in addition, for the intermediate results they are estimated. A timestamps consists of a seconds and a nanos part
-    console.log(`start (s,ms): ${response.getWordsList()[0].getStarttime().getSeconds()}, ${response.getWordsList()[0].getStarttime().getNanos()}`)
-    console.log(`end (s, ms): ${response.getWordsList()[response.getWordsList().length -1].getStarttime().getSeconds()}, ${response.getWordsList()[response.getWordsList().length -1].getStarttime().getNanos()}`)
+
+    if (
+        (response.getIsfinal() && (response.getConfidence() ?? 0) >= 0.85) // we can for example filter the final result by confidence, (stability is 0 in case of final result)
+        ||  (response.getStability() ?? 0) >= 0.8  // we can filter intermediate results by stability, for intermediate results confidence is not set
+    ) {
+        console.clear()
+        // final means its the final result for the section we print it in green color
+        console.log(`${response.getIsfinal() ? GREEN : ''} > ${response.getResult()} ${RESET}`);
+        // a list of word is returned in addition, for the intermediate results they are estimated. A timestamps consists of a seconds and a nanos part
+        console.log(`start (s,ms): ${response.getWordsList()[0].getStarttime().getSeconds()}, ${response.getWordsList()[0].getStarttime().getNanos()} (${response.getStability()} - ${response.getConfidence()} - ${response.getLanguagecode()} )`)
+        console.log(`end (s, ms): ${response.getWordsList()[response.getWordsList().length -1].getStarttime().getSeconds()}, ${response.getWordsList()[response.getWordsList().length -1].getStarttime().getNanos()}`)
+    }
 })
 stream.on('end', () => {
     console.log('The End')

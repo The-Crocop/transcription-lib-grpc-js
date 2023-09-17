@@ -28,6 +28,9 @@ message LiveTranscriptionReply {
   bool original = 5;
   bool isFinal = 6;
   repeated Word words = 7;
+  string languageCode = 8;
+  optional double confidence = 9;
+  optional double stability = 10;
 }
 
 message Word {
